@@ -1,3 +1,9 @@
 streamlit
-#streamlit_gsheets
 git+https://github.com/streamlit/gsheets-connection
+
+
+janitor
+pyvis
+networkx
+streamlit.components
+
