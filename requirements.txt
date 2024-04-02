@@ -2,7 +2,7 @@ streamlit
 git+https://github.com/streamlit/gsheets-connection
 
 
-janitor
+pyjanitor
 pyvis
 networkx
 streamlit.components
