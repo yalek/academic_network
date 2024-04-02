@@ -110,6 +110,7 @@ components.html(HtmlFile.read(), height=800, width=1000)
 
 st.subheader('Contribute', divider = 'rainbow')
 st.write('Add any similar connections you are aware of. Click below')
+st.link_button("Populate", 'https://docs.google.com/spreadsheets/d/1f6mfsbANT3z7ATbFUokvW0oLfnTuLeptZH_UVq8I4uo/edit?usp=sharing')
 
 
 
