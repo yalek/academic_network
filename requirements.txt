@@ -1,9 +1,17 @@
 streamlit
 git+https://github.com/streamlit/gsheets-connection
 
-
+janitor
 pyjanitor
 pyvis
 networkx
-streamlit.components
+#streamlit.components
+
+#streamlit==1.11.1
+#plotly==4.14.3
+#pyvis==0.1.9
+#pandas==1.2.1
+#networkx==2.6.3
+#pyjanitor==0.22.0
+#janitor==0.1.1
 
