@@ -19,20 +19,7 @@ with col3:
     st.write('X - @ChiteriK | @koushik_here')
     st.write('oyalekevin@gmail.com')
 
-st.subheader('Acknowledgement', divider = 'rainbow')
-col1, col2, col3 = st.columns(3)
-
-with col1:
-    st.link_button("Jeanna Schoonmaker", 'https://jeanna-schoonmaker.medium.com/how-i-built-an-app-for-creating-interactive-linkedin-network-graphs-451140a498cf')
-
-with col2:
-    st.link_button("Benedict Neo", 'https://medium.com/bitgrit-data-science-publication/visualize-your-linkedin-network-with-python-59a213786c4')
-
-with col3:
-    st.link_button("Bradley Schoeneweis", 'https://bradley-schoeneweis.medium.com/visualizing-your-linkedin-connections-with-python-pandas-networkx-pyvis-40bf846a532')
-
-
-st.subheader('Data tables', divider = 'rainbow')
+#st.subheader('Data tables', divider = 'rainbow')
 # Create a connection object.
 
 #This is for trial. Try to make  away people can input the data without seeing the whole table
@@ -45,7 +32,7 @@ conn = st.connection("gsheets", type=GSheetsConnection)
 
 data = conn.read(spreadsheet=url)
 
-st.dataframe(data) #comment to prevent showing the data
+#st.dataframe(data) #comment to prevent showing the data
 
 #data cleaning
 #Need to make sure the data that people enter is consistent
@@ -55,18 +42,18 @@ data = (
     .dropna(subset=['professor', 'student']) # drop missing values
 
   )
-st.dataframe(data)
+#st.dataframe(data) #visualize dataframe at the end
 df = data
 
 #dataframe size (row, col)
-st.write(df.shape)
+#st.write(df.shape)
 
 #Exploratory analysis
 df = df['professor'].value_counts().reset_index()
 df.columns = ['professor', 'count']
 df = df.sort_values(by="count", ascending=False)
 
-st.dataframe(df)
+#st.dataframe(df)
 
 
 
@@ -80,17 +67,20 @@ g.add_node('root') # intialize yourself as central
 # use iterrows tp iterate through the data frame
 for _, row in df.iterrows():
 
-  # store company name and count
+  # store professor name and count
   professor = row['professor']
   count = row['count']
 
-  title = f"<b>{professor}</b> – {count}"
-  #title = f"<b>{professor}</b>"
+  title = f"{professor} advised {count} students at: "
   institution = set([x for x in data[professor == data['professor']]['training_institution']])
   institution = ''.join('<li>{}</li>'.format(x) for x in institution)
 
+  students = set([x for x in data[professor == data['professor']]['student']])
+  students = ''.join('"\n"<li>{}</li>'.format(x) for x in students)
+
   institution_list = f"<ul>{institution}</ul>"
-  hover_info = title + institution_list
+
+  hover_info = title + institution_list +  students
 
   g.add_node(professor, size=count*2, title=hover_info, color='#3449eb')
   g.add_edge('root', professor, color='grey')
@@ -115,16 +105,27 @@ HtmlFile = open(f'academic_graph.html','r',encoding='utf-8')
 # Load HTML into HTML component for display on Streamlit
 components.html(HtmlFile.read(), height=800, width=1000)
 
-
+#Contributions
 st.subheader('Contribute', divider = 'rainbow')
-st.write('Add any similar connections you are aware of. Click below')
-#st.link_button("Populate", 'https://docs.google.com/spreadsheets/d/#1f6mfsbANT3z7ATbFUokvW0oLfnTuLeptZH_UVq8I4uo/edit?usp=sharing')
-st.link_button("Populate", 'https://docs.google.com/forms/d/e/1FAIpQLSdEXXcO8hJusvdHZIAtHFky288zPIto89MoxaRF0GF7hHgIxQ/viewform?usp=sf_link')
+st.link_button("Click to Populate any connections", 'https://docs.google.com/forms/d/e/1FAIpQLSdEXXcO8hJusvdHZIAtHFky288zPIto89MoxaRF0GF7hHgIxQ/viewform?usp=sf_link')
 
+#Data tables
+st.subheader('Data Tables', divider = 'rainbow')
+st.dataframe(data) #visualize dataframe at the end
+st.dataframe(df) #visualize dataframe at the end
 
+#Acknowledgements
+st.subheader('Acknowledgements', divider = 'rainbow')
+col1, col2, col3 = st.columns(3)
 
+with col1:
+    st.link_button("Jeanna Schoonmaker", 'https://jeanna-schoonmaker.medium.com/how-i-built-an-app-for-creating-interactive-linkedin-network-graphs-451140a498cf')
 
+with col2:
+    st.link_button("Benedict Neo", 'https://medium.com/bitgrit-data-science-publication/visualize-your-linkedin-network-with-python-59a213786c4')
 
+with col3:
+    st.link_button("Bradley Schoeneweis", 'https://bradley-schoeneweis.medium.com/visualizing-your-linkedin-connections-with-python-pandas-networkx-pyvis-40bf846a532')
 
 
 
