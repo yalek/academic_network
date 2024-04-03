@@ -16,7 +16,7 @@ with col2:
 
 with col3:
     st.subheader('Contact us or Provide Feedback')
-    st.write('X - @ChiteriK | @koushik_here)
+    st.write('X - @ChiteriK | @koushik_here')
     st.write('oyalekevin@gmail.com')
 
 st.subheader('Acknowledgement', divider = 'rainbow')
