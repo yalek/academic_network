@@ -14,6 +14,11 @@ with col2:
     st.title("Academic Networks")
     st.write('By Dr. Kevin Chiteri and Dr. Koushik Nagasubramanian')
 
+with col3:
+    st.subheader('Contact us or Provide Feedback')
+    st.write('X - @ChiteriK | @koushik_here)
+    st.write('oyalekevin@gmail.com')
+
 st.subheader('Acknowledgement', divider = 'rainbow')
 col1, col2, col3 = st.columns(3)
 
@@ -32,7 +37,10 @@ st.subheader('Data tables', divider = 'rainbow')
 
 #This is for trial. Try to make  away people can input the data without seeing the whole table
 
-url = "https://docs.google.com/spreadsheets/d/1f6mfsbANT3z7ATbFUokvW0oLfnTuLeptZH_UVq8I4uo/edit?usp=sharing"
+#url = "https://docs.google.com/spreadsheets/d/#1f6mfsbANT3z7ATbFUokvW0oLfnTuLeptZH_UVq8I4uo/edit?usp=sharing"
+
+url = "https://docs.google.com/spreadsheets/d/1snizWRNYkW5XPNjtRA2H1-lcJ7puKXObZ7K2gnc5PAI/edit?usp=sharing"
+
 conn = st.connection("gsheets", type=GSheetsConnection)
 
 data = conn.read(spreadsheet=url)
@@ -110,7 +118,9 @@ components.html(HtmlFile.read(), height=800, width=1000)
 
 st.subheader('Contribute', divider = 'rainbow')
 st.write('Add any similar connections you are aware of. Click below')
-st.link_button("Populate", 'https://docs.google.com/spreadsheets/d/1f6mfsbANT3z7ATbFUokvW0oLfnTuLeptZH_UVq8I4uo/edit?usp=sharing')
+#st.link_button("Populate", 'https://docs.google.com/spreadsheets/d/#1f6mfsbANT3z7ATbFUokvW0oLfnTuLeptZH_UVq8I4uo/edit?usp=sharing')
+st.link_button("Populate", 'https://docs.google.com/forms/d/e/1FAIpQLSdEXXcO8hJusvdHZIAtHFky288zPIto89MoxaRF0GF7hHgIxQ/viewform?usp=sf_link')
+
 
 
 
